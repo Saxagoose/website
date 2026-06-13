@@ -1,0 +1,148 @@
+/* ── Reset & base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Fixed background image ── */
+body {
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #f0ede8;
+
+  /* swap this URL for your own image */
+  background-image: url('pictures/background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* keeps image still while content scrolls */
+  background-repeat: no-repeat;
+}
+
+
+/* ── Shared glass panel style ── */
+.glass {
+  background: rgba(255, 255, 255, 0.10);
+  border: 10px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* ── Top bar ── */
+#topbar {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  height: 90px;
+  z-index: 100;
+  text-align: center;
+  padding: 5px;
+}
+
+/* ── Page body layout ── */
+#layout {
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  gap: 14px;
+  padding: 110px 14px 24px 14px; /* top pad clears the fixed bar */
+  min-height: 100vh;
+  align-items: flex-start;
+}
+
+/* ── Sidebar ── */
+#sidebar {
+  position: sticky;
+  top: 80px;              /* sticks just below the top bar */
+  width: 180px;
+  flex-shrink: 0;
+  padding: 20px 14px;
+  gap: 4px;
+}
+
+#sidebar a {
+  display: flex;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  transition: background 0.15s, color 0.15s;
+}
+
+#sidebar a:hover,
+#sidebar a.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+#sidebar a:hover .dot,
+#sidebar a.active .dot {
+  background: #fff;
+}
+
+/* ── Main content ── */
+#main {
+  flex: 1;
+  min-width: 0;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  padding: 32px 36px;
+  line-height: 1.7;
+}
+
+/* ── Content typography ── */
+.page-section { display: none; }
+.page-section.active { display: block; }
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.90);
+  margin: 28px 0 10px;
+}
+
+p {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.80);
+  margin-bottom: 14px;
+  max-width: 62ch;
+  margin: auto
+}
+
+ul {
+  list-style-type: "-"; 
+  padding-left: 16px;
+}
+
+.tagline {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.60);
+  margin-bottom: 28px;
+}
+
+.btn {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 7px;
+  color: #fff;
+  font-size: 13.5px;
+  padding: 8px 22px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.btn:hover { background: rgba(255, 255, 255, 0.28); }
+
