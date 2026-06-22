@@ -5,48 +5,75 @@
   padding: 0;
 }
 
+@font-face {
+  font-family: 'Oswald';
+  src: url(/fonts/oswald/Oswald-Medium.woff2) format('woff2')
+}
+
+:root{
+  --inner-gap: 14px;
+  --outer-gap: 14px;
+  --topbar-height: 110px;
+  --text-padding: 8px 16px;
+  --text-color: #f5f0e8;
+}
+
 /* ── Fixed background image ── */
 body {
   min-height: 100vh;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  color: #f0ede8;
-
-  /* swap this URL for your own image */
-  background-image: url('pictures/background.png');
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: -0.01em;
+  color: var(--text-color);
+  background-image: url('pictures/IMG_2822.png');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* keeps image still while content scrolls */
+  background-attachment: fixed;
   background-repeat: no-repeat;
 }
 
+/* ── Background dim overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 0;
+  pointer-events: none;
+}
 
 /* ── Shared glass panel style ── */
 .glass {
-  background: rgba(255, 255, 255, 0.10);
-  border: 10px solid rgba(255, 255, 255, 0.55);
+  background: rgba(150, 0, 0, 0.30);
+  border: 10px solid rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
 
 /* ── Top bar ── */
 #topbar {
-  position: fixed;
-  top: 14px;
-  left: 14px;
-  right: 14px;
-  height: 90px;
+  position: absolute;
+  top: var(--outer-gap);
+  left: var(--outer-gap);
+  right: var(--outer-gap);
+  height: var(--topbar-height);
   z-index: 100;
   text-align: center;
   padding: 5px;
 }
 
+#topbar h1 {
+  letter-spacing: 0.08em;
+  font-size: 36px;
+  line-height: 1.2;
+}
+
 /* ── Page body layout ── */
 #layout {
-  position: fixed;
+  position: relative;
   z-index: 1;
   display: flex;
   gap: 14px;
-  padding: 110px 14px 24px 14px; /* top pad clears the fixed bar */
+  padding: calc(2*var(--inner-gap) + var(--topbar-height)) 14px 14px 14px;
   min-height: 100vh;
   align-items: flex-start;
 }
@@ -54,21 +81,16 @@ body {
 /* ── Sidebar ── */
 #sidebar {
   position: sticky;
-  top: 80px;              /* sticks just below the top bar */
   width: 180px;
-  flex-shrink: 0;
-  padding: 20px 14px;
-  gap: 4px;
+  padding: var(--inner-gap);
+  line-height: 1.8;
 }
 
 #sidebar a {
-  display: flex;
-  gap: 8px;
-  color: rgba(255, 255, 255, 0.78);
+  display: block;  
+  color: var(--text-color);
   text-decoration: none;
-  font-size: 13px;
-  padding: 7px 10px;
-  border-radius: 7px;
+  font-size: 18px;
   transition: background 0.15s, color 0.15s;
 }
 
@@ -89,18 +111,19 @@ body {
   min-width: 0;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  padding: 32px 36px;
   line-height: 1.7;
+  padding: var(--text-padding);
 }
+
+
 
 /* ── Content typography ── */
 .page-section { display: none; }
 .page-section.active { display: block; }
 
 h1 {
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 700;
-  color: #fff;
   margin-bottom: 6px;
   letter-spacing: -0.01em;
 }
@@ -108,27 +131,24 @@ h1 {
 h2 {
   font-size: 18px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.90);
   margin: 28px 0 10px;
 }
 
 p {
-  font-size: 14.5px;
-  color: rgba(255, 255, 255, 0.80);
+  font-size: 20px;
   margin-bottom: 14px;
-  max-width: 62ch;
-  margin: auto
 }
 
 ul {
-  list-style-type: "-"; 
-  padding-left: 16px;
+  list-style-type: "▶ ";
+  padding-left: 14px;
 }
 
 .tagline {
   font-size: 15px;
   color: rgba(255, 255, 255, 0.60);
   margin-bottom: 28px;
+  text-align: left;
 }
 
 .btn {
@@ -145,4 +165,3 @@ ul {
 }
 
 .btn:hover { background: rgba(255, 255, 255, 0.28); }
-
