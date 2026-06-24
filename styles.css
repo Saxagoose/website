@@ -80,34 +80,39 @@ body::before {
 
 /* ── Sidebar ── */
 #sidebar {
+  flex: 10vw;
   position: sticky;
-  width: 180px;
   padding: var(--inner-gap);
   line-height: 1.8;
 }
 
 #sidebar a {
-  display: block;  
+  display: block;
   color: var(--text-color);
   text-decoration: none;
   font-size: 18px;
-  transition: background 0.15s, color 0.15s;
 }
 
-#sidebar a:hover,
-#sidebar a.active {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
+#sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-#sidebar a:hover .dot,
-#sidebar a.active .dot {
-  background: #fff;
+#sidebar ul ul a {
+  padding-left: 24px;
+}
+
+/* ── Projects layout ── */
+#projects-layout {
+  flex: 90vw;
+  min-width: 0;
+  padding: var(--text-padding);
 }
 
 /* ── Main content ── */
 #main {
-  flex: 1;
+  flex: 9;
   min-width: 0;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
@@ -115,7 +120,32 @@ body::before {
   padding: var(--text-padding);
 }
 
+#main a {
+  font-size: 36px;
+  color: #0bae62;
+}
 
+/* ── Projects grid ── */
+.project-grid {
+  margin-top: 16px;
+  grid-template-columns: repeat(4, calc(90vw/4));
+  grid-template-rows: repeat(100, calc(90vw/4));
+}
+
+.project-box {
+  width: calc(25% - 6px);
+  display: inline-block;
+  margin-bottom: 12px;
+  vertical-align: top;
+  padding: 16px;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+a:hover {
+  background: rgba(49, 6, 84, 0.696);
+  transition: background 0.4s;
+}
 
 /* ── Content typography ── */
 .page-section { display: none; }
@@ -131,7 +161,7 @@ h1 {
 h2 {
   font-size: 18px;
   font-weight: 600;
-  margin: 28px 0 10px;
+  margin: 0 0 8px 0;
 }
 
 p {
@@ -140,7 +170,7 @@ p {
 }
 
 ul {
-  list-style-type: "▶ ";
+  list-style-type: "";
   padding-left: 14px;
 }
 

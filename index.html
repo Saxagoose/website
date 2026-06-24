@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name — Personal Site</title>
+  <title>Phil Watson's Personal Site</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="/favicon.png">
 </head>
 <body>
 
@@ -15,17 +16,7 @@
 
   <div id="layout">
     <aside id="sidebar" class="glass">
-      <ul>
-        <li><a href="index.html" >Home</a></li>
-        <li><a href="pages/projects.html">Projects</a></li>
-          <ul>
-            <li><a href="pages/vfd.html">VFD Clock</a></li>
-            <li><a href="pages/cylinder-clock.html">Cylinder Clock</a></li>
-          </ul>
-        <li><a href="pdfs/resume.pdf">Resume</a></li>
-        <li><a href="pages/photography.html">Photography</a></li>
-        <li><a href="pages/other-art.html">Other Art</a></li>
-      </ul>      
+      <div id="table-placeholder"></div>
     </aside>
 
     <main id="main" class="glass">
@@ -36,7 +27,15 @@
           <p>Hello! I am Phil, and I am currently studying Electrical and Computer Engineering at Worcester Polytechnic Institute and love just learning about everything I can. Outside of school, I am passionate about working on personal projects, ranging from clocks to robotics to woodworking to CNC milling and everything in between!</p>
         </div>
         <p>Anyways this website is under construction and I am going to finish it this summer!</p>
+        <a href="https://github.com/Saxagoose/website">GitHub Repo for this site</a>
     </main>
   </div>
+  <script>
+    fetch('table.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('table-placeholder').innerHTML = data;
+      });
+  </script>
 </body>
 </html>

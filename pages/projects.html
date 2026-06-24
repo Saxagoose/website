@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phil Watson's Personal Site</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+
+  <header id="topbar" class="glass">
+    <h1>Phil Watson</h1>
+    <p>Projects</p>
+  </header>
+
+  <div id="layout">
+    <aside id="sidebar" class="glass">
+      <div id="table-placeholder"></div>
+    </aside>
+
+    <div id="projects-layout">
+      <section id="projects">
+        <div class="project-grid">
+          <a class="project-box glass">
+            <h2>Project One</h2>
+            <p>A longer description for a featured project goes here.</p>
+          </a>
+          <div class="project-box glass">
+            <h2>Project Two</h2>
+            <p>Short description.</p>
+          </div>
+          <div class="project-box glass">
+            <h2>Project Three</h2>
+            <p>Tall box for a project with more content.</p>
+          </div>
+          <div class="project-box glass">
+            <h2>Project Four</h2>
+            <p>Wide box spanning two columns.</p>
+          </div>
+          <div class="project-box glass">
+            <h2>Project Five</h2>
+            <p>Short description.</p>
+          </div>
+          <div class="project-box glass">
+            <h2>Project Six</h2>
+            <p>Short description.</p>
+          </div>
+          <div class="project-box glass">
+            <h2>Project Seven</h2>
+            <p>Very wide box spanning three columns.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    fetch('/table.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('table-placeholder').innerHTML = data;
+      });
+
+    const areaLow = 2;
+    const areaHigh = 4;
+    const colMin = 1;
+    const colMax = 4;
+    const grid = Array.from({length: 100}, () => new Array(colMax).fill(false)); //[row, column] Create a big 2D array of False values to document grid
+    const head = [0, 0]; //[row, column]
+    const boxes = document.querySelectorAll('.project-box');
+    boxes.forEach(box => {      
+      const area = Math.floor(Math.random() * (areaHigh - areaLow + 1)) + areaLow; // Choose a random area for the box
+      let colSpan = Math.floor(Math.random() * ((colMax - head[1])-colMin+1)) + colMin; // Choose a column span that will fit in the rest of the space
+      while (grid[head[0]][(colSpan + head[1])]) { // Checks if the proposed amount of columns this box will take up, will run into another box
+        colSpan -= 1; // Keeps reducing column size to fit 
+      }
+      const rowSpan = Math.ceil(area/colSpan);
+      // Set boxes for grid
+      box.style.gridColumn = `${head[1]} / span ${colSpan}`;
+      box.style.gridRow = `${head[0]} / span ${rowSpan}`;
+      
+      //Fill in grid to keep track of what has been used
+      for (let row = head[0]; row < (head[0] + rowSpan); row++){
+        for (let col = head[1]; col < (head[1]+colSpan); col++){
+          grid[row][col] = true;
+        }
+      }
+
+      // Find next space for head
+      // First find next column to work in 
+      head[1] += colSpan;
+      while (grid[head[0]][head[1]]){ 
+        if (head[1] < colMax) { // If the head is not at the end of the row then incriment, otherwise go to next row
+          head[1]++;
+        } else { // move to the next row down
+          head[1] = 0;
+          head[0]++;
+        }
+      }      
+    });
+  </script>
+</body>
+</html>
