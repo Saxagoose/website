@@ -1,4 +1,4 @@
-/* ── Reset & base ── */
+/*  Reset & base  */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -18,7 +18,7 @@
   --text-color: #f5f0e8;
 }
 
-/* ── Fixed background image ── */
+/*  Fixed background image  */
 body {
   min-height: 100vh;
   font-family: 'Oswald', sans-serif;
@@ -31,7 +31,7 @@ body {
   background-repeat: no-repeat;
 }
 
-/* ── Background dim overlay ── */
+/*  Background dim overlay  */
 body::before {
   content: '';
   position: fixed;
@@ -41,7 +41,7 @@ body::before {
   pointer-events: none;
 }
 
-/* ── Shared glass panel style ── */
+/*  Shared glass panel style  */
 .glass {
   background: rgba(150, 0, 0, 0.30);
   border: 10px solid rgba(255, 255, 255, 0.7);
@@ -49,7 +49,7 @@ body::before {
   -webkit-backdrop-filter: blur(2px);
 }
 
-/* ── Top bar ── */
+/*  Top bar  */
 #topbar {
   position: absolute;
   top: var(--outer-gap);
@@ -67,7 +67,7 @@ body::before {
   line-height: 1.2;
 }
 
-/* ── Page body layout ── */
+/* Page body layout  */
 #layout {
   position: relative;
   z-index: 1;
@@ -78,7 +78,7 @@ body::before {
   align-items: flex-start;
 }
 
-/* ── Sidebar ── */
+/*  Sidebar  */
 #sidebar {
   flex: 10vw;
   position: sticky;
@@ -103,14 +103,13 @@ body::before {
   padding-left: 24px;
 }
 
-/* ── Projects layout ── */
+/*  Projects layout  */
 #projects-layout {
   flex: 90vw;
   min-width: 0;
-  padding: var(--text-padding);
 }
 
-/* ── Main content ── */
+/*  Main content  */
 #main {
   flex: 9;
   min-width: 0;
@@ -125,18 +124,16 @@ body::before {
   color: #0bae62;
 }
 
-/* ── Projects grid ── */
+/*  Projects grid  */
 .project-grid {
+  display: grid;
   margin-top: 16px;
-  grid-template-columns: repeat(4, calc(90vw/4));
-  grid-template-rows: repeat(100, calc(90vw/4));
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(150px, auto);
+  gap: 12px;
 }
 
 .project-box {
-  width: calc(25% - 6px);
-  display: inline-block;
-  margin-bottom: 12px;
-  vertical-align: top;
   padding: 16px;
   text-decoration: none;
   color: var(--text-color);
@@ -147,7 +144,7 @@ a:hover {
   transition: background 0.4s;
 }
 
-/* ── Content typography ── */
+/*  Content typography  */
 .page-section { display: none; }
 .page-section.active { display: block; }
 
