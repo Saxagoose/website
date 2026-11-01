@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phil's Site</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/svg" href="/favicon.svg">
+</head>
+<body>
+
+  <header id="topbar" class="glass">
+    <a id="title" href="/index.html">Phil Watson</a>
+    <p>Projects</p>
+  </header>
+
+  <div id="layout">
+    <aside id="sidebar" class="glass">
+      <div id="table-placeholder"></div>
+    </aside>
+
+    <main id="main" class="glass">
+      <h1>Tall Bike</h1>
+      <h2 class="text-box"><u class="thick-underline">Skills:</u> Welding, Metalworking, Bicycle Repair</h2>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <img src="tall_bike/tall_bike.jpg" alt="Tall Bike" style="width: 600px; height: auto;" class="bordered-image"/>
+          <div>
+            <p> I have always loved bicycles and ridiculous contraptions. So during the end of my senior year of high school, when my woodshop teacher acquired a variety of bicycle frame building jigs and offered to work with me on a bicycle frame. However, the year was running out and I still wanted to make some bicycle related things. So I built a tall bike with two frames I bought off of Craigslist for $30 total and learned basic metal working and welding.</p>
+            <p> When I got to college, I added a disco ball that spins when you pedal and a skeleton on the back of the frame. I really love riding it around because it never fails to bring a smile everywhere it goes.</p>
+          </div>
+        </div>
+    </main>
+  </div>
+  <script>
+    fetch('/table.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('table-placeholder').innerHTML = data;
+      });
+  </script>
+</body>
+</html>

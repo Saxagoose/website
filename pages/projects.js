@@ -26,7 +26,6 @@ if (colSpan < 1) colSpan = 1;
   const area = Math.floor(Math.random() * (areaHigh - areaLow + 1)) + areaLow; // Chooses random area
   const rowSpan = Math.ceil(area / colSpan);
 
-  console.log("colSpan:", colSpan, "rowSpan:", rowSpan);
 
   // CSS grid is not zero indexed :(
   box.style.gridColumn = `${head[1] + 1} / span ${colSpan}`;

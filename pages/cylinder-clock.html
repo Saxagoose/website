@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phil's Site</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/svg" href="/favicon.svg">
+</head>
+<body>
+
+  <header id="topbar" class="glass">
+    <a id="title" href="/index.html">Phil Watson</a>
+    <p>Projects</p>
+  </header>
+
+  <div id="layout">
+    <aside id="sidebar" class="glass">
+      <div id="table-placeholder"></div>
+    </aside>
+
+    <main id="main" class="glass">
+    <h1>Cylinder Clock</h1>
+    <h2 class="text-box"><u class="thick-underline">Skills:</u> Fusion 360 CAD/CAM, 3D Printing, Machining, Python</h2>
+    <h2>Overview</h2>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <img src="cylinder_clock/rollover.gif" alt="Cylinder Clock" style="width: 600px; height: auto;" class="bordered-image"/>
+      <p>This clock works by having 3 rings stacked on top of each other, with the top one displaying the hours, the middle one displaying the minute’s tens, and the third one displaying the minute’s ones. Inside, each ring has a ring gear glued to it with a magnet positioned before the first number of the ring. Each level has a skeleton piece, which holds the control board, the stepper motor with the driver gear, and the idler rings that keep the ring centered. Each skeleton piece bolts together with a lid that magnetically holds onto the top skeleton piece. There is a Raspberry Pi Zero W, that connects to WiFi in order to get the time and acts as the control board for the clock. </p>
+    </div>
+    <h2>Technical Information and Story</h2>
+    <p>I first thought of this design for a clock many years ago in 7th grade. At the time I was pretty unfamiliar with any CAD software and thus made the first few iterations in Tinkercad, which turned out to be frustrating and limiting, so I learned Fusion 360 in order to model the rings, gears, and internal structure. The first few iterations used loose ball bearings in between the rings to provide support and the ability for the rings to move independently. However, this made assembly difficult and there was no cage for the bearings so they bound up against each other. </p>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <p>To alleviate this issue I created idler gears with support tabs underneath, this gave the rings support independently of each other, and it allowed for the rings to stay centered on the internal skeleton. I also made the mounting holes for the stepper motor a slot so that the stepper motor can slide back and forth to adjust the driver gear distance to the outer ring gear. The lighting was initially a singular LED, then I moved to two to improve brightness and added baffles coming out of the skeleton to prevent light leaking to the other numbers. For the font I initially used a stencil font inside of TinkerCAD, however we eventually used a modified version of Pinmold, which we thickened the bridges and modified some of the numbers to be the same size as to make the alignment of numbers easier. This homing point is a reed switch, which is activated by a magnet glued to the ring on each level. My grandfather helped with the electronics of the project and provided a sounding board for mechanical design. He designed a PCB for the clock that provided a place for the stepper motor drivers, the LEDs, and connectors for a Raspberry Pi Zero W. </p>
+      <img src="cylinder_clock/plastic.gif" alt="Plastic Cylinder Clock" style="width: 500px; height: auto;" class="bordered-image"/>
+    </div>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <img src="cylinder_clock/1-metal.gif" alt="Metal Cylinder Clock" style="width: 500px; height: auto;" class="bordered-image"/>
+      <p>Initially the stepper motors drivers were inside each level of the internal structure, however they were too big, which made it too difficult to assemble with all the other wires and hardware in the space, thus they were put onto the PCB. After the pandemic, Raspberry Pi Zero prices shot up through the roof and they had released the Raspberry Pi Pico W, which is more than capable of going to an NTP server, grabbing the time and running the clock, so we switched to using those. We then decided to make a metal version of the clock. I generated the machine code in Fusion 360 and then my grandfather and I machined it at the MIT hobby shop. </p>
+    </div>
+    <p>We then thinned the rings, from 1/8"  thick to 1/16” thick, and made minor adjustments to the idlers to enable a smoother motion with tighter tolerances between each ring. This final version can be seen in the first gif of this page</p>
+    
+    </main>
+  </div>
+  <script>
+    fetch('/table.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('table-placeholder').innerHTML = data;
+      });
+  </script>
+</body>
+</html>
